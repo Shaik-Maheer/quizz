@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instructions 🧠</title>
+    <style>
+      body {
+        background-image: url("https://img.freepik.com/free-vector/modern-business-background-with-digital-technology-design_1361-3299.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .instructions-container {
+        color: wheat;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        width: 700px;
+        box-shadow: 0px 0px 60px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      @media (max-width: 650px) {
+        body {
+          font-size: 50%;
+        }
+      }
+
+      h1 {
+        font-size: 60px;
+        color: whitesmoke;
+      }
+
+      p {
+        font-size: 22px;
+        padding: 10px 0;
+      }
+
+      ul {
+        font-size: 20px;
+        text-align: left;
+        list-style: square;
+        margin: 20px 0;
+      }
+
+      ul li {
+        margin-bottom: 7px;
+      }
+
+      #button-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      button {
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: rebeccapurple;
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+        padding: 15px 30px;
+        transition: background-color 0.3s, transform 0.2s;
+        font-weight: bold;
+      }
+
+      button:hover {
+        background-color: green;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0px);
+      }
+
+      #exit-game {
+        background-color: red;
+      }
+
+      #exit-game:hover {
+        background-color: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="instructions-container">
+      <h1></h1>
+      <p>Welcome to the Quiz App! Follow these instructions to get started:</p>
+      <ul>
+        <li>📝 Answer each question carefully.</li>
+        <li>➡️ Click "Next" to move to the next question.</li>
+        <li>📊 Your score will be displayed at the end of the quiz.</li>
+        <li>🏆 To win, aim for a perfect 10/10 score!</li>
+        <li>🎉 Good luck, and have fun!</li>
+        <li>🔍 Review your answers before submitting.</li>
+        <li>⏱️ Take your time; there’s no rush!</li>
+        <li>💡 Think critically and enjoy the challenge.</li>
+        <li>📚 Expand your knowledge with every question!</li>
+        <li>🌟 Celebrate your achievements and keep learning!</li>
+      </ul>
+      <div id="button-container">
+        <button id="start-game">Start Game</button>
+        <button id="exit-game">Exit</button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("start-game").addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      document.getElementById("exit-game").addEventListener("click", () => {
+        window.location.href = "intropage.html";
+      });
+      let h1 = document.querySelector("h1");
+      let i = 0;
+      let text = "INSTRUCTIONS...";
+
+      function call() {
+        if (i < text.length) {
+          h1.textContent += text[i];
+          i++;
+        }
+        setTimeout(call, 200);
+      }
+      call();
+    </script>
+  </body>
+</html>

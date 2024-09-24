@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knowledge Challenge 🧠</title>
+    <style>
+      body {
+        background-image: url("https://img.lovepik.com/background/20211021/large/lovepik-business-technology-background-image_401691631.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 20px;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: wheat;
+        text-align: center;
+      }
+      h1 {
+        font-size: 70px;
+        margin: 0;
+        transition: transform 0.3s;
+      }
+      h1 span {
+        background: linear-gradient(to right, red, rebeccapurple);
+        background-clip: text;
+        color: transparent;
+      }
+
+      h1:hover {
+        transform: scale(1.1);
+      }
+
+      h2 {
+        font-size: 36px;
+        margin: 10px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      p {
+        font-size: 22px;
+        max-width: 600px;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        color: white;
+      }
+
+      a {
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 20px;
+        padding: 12px 24px;
+        border: 2px solid rebeccapurple;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: rebeccapurple;
+        color: white;
+      }
+
+      a:hover {
+        background-color: rgb(154, 45, 45);
+        color: white;
+      }
+      @media (max-width: 650px) {
+        body {
+          font-size: 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1><span>Knowledge Challenge</span>🧠</h1>
+    <h2></h2>
+    <p>
+      Engage in a series of thought-provoking questions designed to challenge
+      your understanding and broaden your knowledge. Let’s see what you’ve got!
+      📚
+    </p>
+    <a href="instr.html">Begin the Challenge</a>
+    <script>
+      let h2 = document.querySelector("h2");
+      let i = 0;
+      let text = "Are You Ready to Test Your Skills? 🚀";
+
+      function call() {
+        if (i < text.length) {
+          h2.textContent += text[i];
+          i++;
+        }
+        setTimeout(call, 80);
+      }
+      call();
+    </script>
+  </body>
+</html>

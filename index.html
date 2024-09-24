@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Quiz App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://img.freepik.com/premium-photo/professional-slides-template-background-illustration-powerpoint-presentation_732449-3454.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .quiz-container {
+        width: 600px;
+        color: #e0e0e0;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 60px 10px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s;
+      }
+      @media (max-width: 650px) {
+        .quiz-container {
+          width: 400px;
+        }
+        h1 {
+          font-size: 30px;
+        }
+      }
+
+      .quiz-container:hover,
+      h1:hover {
+        transform: scale(1.02);
+      }
+      #question {
+        text-align: center;
+        font-size: 25px;
+        font-weight: bolder;
+        padding: 5px;
+      }
+      button {
+        margin: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: rebeccapurple;
+        color: white;
+        cursor: pointer;
+        width: 50%;
+        font-size: 16px;
+        padding: 10px 25px;
+        transition: background-color 0.3s, transform 0.2s;
+        font-weight: bolder;
+      }
+
+      button:hover {
+        background-color: red;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0px);
+      }
+
+      .hidden {
+        display: none;
+      }
+      #prev {
+        background-color: grey;
+      }
+      #navigation {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        text-align: center;
+        padding: 10px;
+      }
+      h1 {
+        font-size: 70px;
+        background: linear-gradient(to right, red, rebeccapurple);
+        background-clip: text;
+        color: transparent;
+        animation: fadeIn 1s ease-in-out;
+        text-align: center;
+      }
+      h1:hover {
+        transform: scale(1.5);
+      }
+      h3 {
+        text-align: center;
+        color: whitesmoke;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      #answers div {
+        margin: 10px 0px;
+        border: 2px solid;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+      }
+      #answers div:hover {
+        background-color: #695858;
+      }
+      input {
+        accent-color: black;
+      }
+      label {
+        cursor: pointer;
+      }
+      #score-container {
+        text-align: center;
+      }
+      #submit {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <div class="quiz-container">
+      <div id="question-container">
+        <p id="question"></p>
+        <div id="answers"></div>
+      </div>
+      <div id="navigation">
+        <button id="prev" onclick="prevQuestion()">Previous</button>
+        <button id="next" onclick="nextQuestion()">Next</button>
+        <button id="submit">Submit</button>
+      </div>
+      <div id="score-container" class="hidden">
+        <h2>Your Score: <span id="score"></span></h2>
+        <h4 class="score-matter"></h4>
+      </div>
+    </div>
+    <h3></h3>
+    <script>
+      let name = prompt("Enter your name to play💟 ");
+      alert(`Best of luck ${name}💓  and enjoy the game...`);
+      const questions = [
+        {
+          question: "1. Who wrote the famous book 'Romeo and Juliet'?",
+          answers: [
+            "A. William Shakespeare",
+            "B. Charles Dickens",
+            "C. Mark Twain",
+            "D. Jane Austen",
+          ],
+          correct: 0,
+        },
+        {
+          question: "2. Which country made the first milk chocolate?",
+          answers: ["A. Switzerland", "B. Belgium", "C. Greece", "D. Germany"],
+          correct: 0,
+        },
+        {
+          question:
+            "3. Complete the lyrics of famous pop song : 'Romeo, save me, I never want to ____.'",
+          answers: [
+            "A. be alone",
+            "B. cry alone",
+            "C. laugh alone",
+            "D. feel alone",
+          ],
+          correct: 0,
+        },
+        {
+          question:
+            "4. What is the title of famous K-pop boy group BTS's first fully English song?",
+          answers: [
+            "A. Butter",
+            "B. Boy With Luv",
+            "C. Mic Drop",
+            "D. Dynamite",
+          ],
+          correct: 3,
+        },
+
+        {
+          question:
+            "5. Which animal can produce the loudest sound in the animal kingdom?",
+          answers: ["A. Blue Whale", "B. Elephant", "C. Lion", "D. Hyena"],
+          correct: 0,
+        },
+        {
+          question:
+            "6. What is the name of the famous Swiss chocolate brand known worldwide?",
+          answers: ["A. Lindt", "B. Cadbury", "C. Hershey's", "D. Ferrero"],
+          correct: 0,
+        },
+        {
+          question:
+            "7. Which South Korean city is known as the 'City of Technology' and is home to many tech companies?",
+          answers: ["A. Seoul", "B. Busan", "C. Incheon", "D. Daegu"],
+          correct: 0,
+        },
+        {
+          question:
+            "8. In the Well-Known Jodi Arias case, who did she(muderer) murder?",
+          answers: [
+            "A. Her ex-husband",
+            "B. Her boyfriend",
+            "C. Her friend",
+            "D. A co-worker",
+          ],
+          correct: 1,
+        },
+        {
+          question: "9. Geneva city is located in which country?",
+          answers: ["A. Switzerland", "B. France", "C. Italy", "D. Germany"],
+          correct: 0,
+        },
+        {
+          question: "10. Which city is known as the 'Silicon Valley of India'?",
+          answers: ["A. Bangalore", "B. Hyderabad", "C. Pune", "D. Delhi"],
+          correct: 0,
+        },
+      ];
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let userAnswers = new Array(questions.length).fill(null); // Store user answers
+      let next = document.querySelector("#next");
+      let prev = document.querySelector("#prev");
+      let submit = document.querySelector("#submit");
+      function loadQuestion() {
+        if (currentQuestionIndex == questions.length - 1) {
+          next.style.display = "none";
+          submit.style.display = "block";
+        } else if (currentQuestionIndex === 0) {
+          prev.style.display = "none";
+          submit.style.display = "none";
+        } else {
+          prev.style.display = "block";
+          next.style.display = "block";
+          submit.style.display = "none";
+        }
+        const questionElement = document.getElementById("question");
+        const answersElement = document.getElementById("answers");
+
+        questionElement.textContent = questions[currentQuestionIndex].question;
+        answersElement.innerHTML = ""; // Clear previous answers
+
+        questions[currentQuestionIndex].answers.forEach((answer, index) => {
+          const answerbox = document.createElement("div");
+
+          // Create radio button
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "answer";
+          input.id = `answer-${index}`;
+          input.value = index;
+
+          if (userAnswers[currentQuestionIndex] === index) {
+            input.checked = true; //// Mark the radio button as checked
+          }
+
+          // Create label for the radio button
+          const label = document.createElement("label");
+          label.htmlFor = `answer-${index}`;
+          label.textContent = answer;
+
+          answerbox.append(input, label);
+          answersElement.appendChild(answerbox);
+        });
+      }
+
+      function selectAnswer() {
+        const selectedOption = document.querySelector(
+          'input[name="answer"]:checked'
+        );
+        if (selectedOption) {
+          const index = parseInt(selectedOption.value);
+          userAnswers[currentQuestionIndex] = index;
+          if (index === questions[currentQuestionIndex].correct) {
+            score++;
+          }
+        } else {
+          alert("Please select an answer...");
+        }
+      }
+
+      function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          loadQuestion();
+        }
+      }
+
+      function nextQuestion() {
+        selectAnswer();
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          loadQuestion();
+        } else {
+          showScore();
+        }
+      }
+
+      submit.addEventListener("click", () => {
+        selectAnswer();
+        document.getElementById("score-container").style.display = "block";
+        document.getElementById("navigation").style.display = "none";
+        document.getElementById("question-container").style.display = "none";
+        document.getElementById(
+          "score"
+        ).textContent = `${score} out of ${questions.length}`;
+        let scoreMatter = document.querySelector(".score-matter");
+        if (score === 10) {
+          scoreMatter.textContent = "Congratulations,You won...";
+        } else if (score <= 5) {
+          scoreMatter.textContent = `You can do better, ${name}. Keep practicing to improve your score...`;
+        } else {
+          scoreMatter.textContent = `Good game, ${name}.Well played...`;
+        }
+      });
+
+      // Hide navigation buttons
+
+      let h1 = document.querySelector("h1");
+      let i = 0;
+      let text = "QUIZ APP";
+
+      function call() {
+        if (i < text.length) {
+          h1.textContent += text[i];
+          i++;
+        }
+        setTimeout(call, 100);
+      }
+      call();
+
+      window.onload = function () {
+        let p = document.querySelector("h3");
+        const text = [
+          "Welcome to the Quiz App..❤",
+          "Let's Play..🥳",
+          "Yahooo..😃",
+          "Test your Knowledge..🧠",
+          "Can u score 🔟/🔟 ?",
+          "Let's test you..!🤟",
+          "Think Wisely..🧐",
+          "Have Fun..🤩",
+        ];
+        let i = 0;
+        let j = 0;
+        function typeword() {
+          if (i < text.length) {
+            if (j < text[i].length) {
+              p.textContent = text[i].slice(0, j + 1);
+              j++;
+              setTimeout(typeword, 200);
+            } else {
+              i++;
+              j = 0;
+              setTimeout(typeword, 500);
+            }
+          }
+        }
+        typeword();
+      };
+      // Initialize the quiz
+      loadQuestion();
+    </script>
+  </body>
+</html>
