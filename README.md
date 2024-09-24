@@ -1,6 +1,5 @@
 
 # Simple Quiz App 🎯
-
 ## Description
 A **Simple Quiz App** that tests your knowledge with multiple-choice questions. It’s built using **HTML**, **CSS**, and **JavaScript**, providing a smooth and interactive experience with real-time feedback and score calculation. 📚🧠
 
